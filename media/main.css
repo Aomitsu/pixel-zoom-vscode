@@ -8,7 +8,7 @@ body {
   background: var(--vscode-editor-background);
 }
 
-#toolbar {
+#toolbar-bar {
   position: fixed;
   top: 0;
   left: 0;
@@ -17,25 +17,14 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 10px;
-  background: var(--vscode-editorWidget-background, rgba(0, 0, 0, 0.6));
+  padding: 2px 8px;
+  background: var(--vscode-editor-background);
   border-bottom: 1px solid var(--vscode-editorWidget-border, transparent);
 }
 
-#toolbar button {
-  min-width: 30px;
-  height: 26px;
-  padding: 0 8px;
-  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground));
-  background: var(--vscode-button-secondaryBackground, transparent);
-  border: 1px solid var(--vscode-button-border, var(--vscode-contrastBorder, transparent));
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-#toolbar button:hover {
-  background: var(--vscode-button-secondaryHoverBackground, rgba(128, 128, 128, 0.2));
+#toolbar {
+  display: flex;
+  align-items: center;
 }
 
 #info {
@@ -48,7 +37,7 @@ body {
 #stage {
   position: absolute;
   inset: 0;
-  padding-top: 40px;
+  padding-top: 34px;
   box-sizing: border-box;
   display: flex;
   align-items: center;

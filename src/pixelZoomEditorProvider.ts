@@ -139,10 +139,14 @@ export class PixelZoomEditorProvider implements vscode.CustomReadonlyEditorProvi
     const styleUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this.extensionUri, 'media', 'main.css')
     );
+    const codiconUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this.extensionUri, 'media', 'codicon.css')
+    );
     const nonce = getNonce();
     const csp = [
       "default-src 'none'",
       `img-src ${webview.cspSource} data:`,
+      `font-src ${webview.cspSource}`,
       `style-src ${webview.cspSource}`,
       `script-src 'nonce-${nonce}'`,
     ].join('; ');
@@ -171,15 +175,18 @@ export class PixelZoomEditorProvider implements vscode.CustomReadonlyEditorProvi
 <meta http-equiv="Content-Security-Policy" content="${csp}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="${styleUri}" rel="stylesheet">
+<link href="${codiconUri}" rel="stylesheet" id="vscode-codicon-stylesheet">
 <title>Pixel Zoom</title>
 </head>
 <body class="${bodyClasses}">
-  <div id="toolbar">
-    <button data-action="zoom-out" title="${escapeHtml(vscode.l10n.t('Zoom out (-)'))}">−</button>
-    <button data-action="zoom-in" title="${escapeHtml(vscode.l10n.t('Zoom in (+)'))}">+</button>
-    <button data-action="fit" title="${escapeHtml(vscode.l10n.t('Fit to window (0)'))}">Fit</button>
-    <button data-action="actual" title="${escapeHtml(vscode.l10n.t('Actual size (1)'))}">1:1</button>
-    <button data-action="smooth" title="${escapeHtml(vscode.l10n.t('Toggle smoothing / pixelated'))}">${escapeHtml(vscode.l10n.t('Smooth'))}</button>
+  <div id="toolbar-bar">
+    <vscode-toolbar-container id="toolbar">
+      <vscode-toolbar-button data-action="zoom-out" icon="zoom-out" title="${escapeHtml(vscode.l10n.t('Zoom out (-)'))}" label="${escapeHtml(vscode.l10n.t('Zoom out (-)'))}"></vscode-toolbar-button>
+      <vscode-toolbar-button data-action="zoom-in" icon="zoom-in" title="${escapeHtml(vscode.l10n.t('Zoom in (+)'))}" label="${escapeHtml(vscode.l10n.t('Zoom in (+)'))}"></vscode-toolbar-button>
+      <vscode-toolbar-button data-action="fit" icon="screen-full" title="${escapeHtml(vscode.l10n.t('Fit to window (0)'))}" label="${escapeHtml(vscode.l10n.t('Fit to window (0)'))}"></vscode-toolbar-button>
+      <vscode-toolbar-button data-action="actual" icon="screen-normal" title="${escapeHtml(vscode.l10n.t('Actual size (1)'))}" label="${escapeHtml(vscode.l10n.t('Actual size (1)'))}"></vscode-toolbar-button>
+      <vscode-toolbar-button data-action="smooth" icon="paintcan" title="${escapeHtml(vscode.l10n.t('Toggle smoothing / pixelated'))}" label="${escapeHtml(vscode.l10n.t('Toggle smoothing / pixelated'))}" toggleable></vscode-toolbar-button>
+    </vscode-toolbar-container>
     <span id="info"></span>
   </div>
   <div id="stage"><img id="image" src="${dataUri}" alt="${escapeHtml(fileName)}"></div>
