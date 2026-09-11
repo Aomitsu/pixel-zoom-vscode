@@ -1,4 +1,6 @@
 import { computeFitScale } from '../scale';
+import '@vscode-elements/elements/dist/vscode-toolbar-container/index.js';
+import '@vscode-elements/elements/dist/vscode-toolbar-button/index.js';
 
 interface PixelZoomMessages {
   smoothed: string;
@@ -136,8 +138,8 @@ if (img.complete && img.naturalWidth) {
 }
 
 document.getElementById('toolbar')?.addEventListener('click', (event) => {
-  const target = event.target as HTMLElement;
-  switch (target.dataset.action) {
+  const button = (event.target as Element | null)?.closest('vscode-toolbar-button');
+  switch ((button as HTMLElement | null)?.dataset.action) {
     case 'zoom-in':
       zoomBy(1);
       break;
@@ -150,12 +152,19 @@ document.getElementById('toolbar')?.addEventListener('click', (event) => {
     case 'actual':
       actualSize();
       break;
-    case 'smooth':
-      smoothing = !smoothing;
-      render();
-      break;
   }
 });
+
+const smoothToggle = document.querySelector(
+  'vscode-toolbar-button[data-action="smooth"]'
+) as (HTMLElement & { checked: boolean }) | null;
+if (smoothToggle) {
+  smoothToggle.checked = smoothing;
+  smoothToggle.addEventListener('change', () => {
+    smoothing = smoothToggle.checked;
+    render();
+  });
+}
 
 stage.addEventListener(
   'wheel',

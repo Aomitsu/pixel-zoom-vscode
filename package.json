@@ -138,9 +138,10 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "clean": "node -e \"require('fs').rmSync('out',{recursive:true,force:true})\"",
-    "compile": "npm run clean && npm run compile:extension && npm run compile:webview",
+    "compile": "npm run clean && npm run compile:extension && npm run compile:webview && npm run copy:codicons",
     "compile:extension": "tsc -p tsconfig.json",
     "compile:webview": "esbuild src/webview/main.ts --bundle --format=iife --target=es2020 --outfile=media/main.js",
+    "copy:codicons": "node scripts/copy-codicons.mjs",
     "watch": "tsc -w -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.webview.json",
     "test": "vitest run",
@@ -149,6 +150,8 @@
   "devDependencies": {
     "@types/node": "^22.0.0",
     "@types/vscode": "^1.90.0",
+    "@vscode-elements/elements": "^2.5.1",
+    "@vscode/codicons": "^0.0.45",
     "@vscode/vsce": "^3.2.0",
     "esbuild": "^0.24.0",
     "typescript": "^5.6.0",
