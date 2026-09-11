@@ -1,0 +1,16 @@
+{
+  "Pixel Zoom: no image selected.": "Pixel Zoom : aucune image sélectionnée.",
+  "Pixel Zoom: unsupported format ({0}).": "Pixel Zoom : format non pris en charge ({0}).",
+  "Pixel Zoom — {0}": "Pixel Zoom — {0}",
+  "Unable to read image": "Impossible de lire l'image",
+  "Zoom out (-)": "Zoom arrière (-)",
+  "Zoom in (+)": "Zoom avant (+)",
+  "Fit to window (0)": "Ajuster à la fenêtre (0)",
+  "Actual size (1)": "Taille réelle (1)",
+  "Toggle smoothing / pixelated": "Basculer lissage / pixelisé",
+  "Smooth": "Lisser",
+  "smoothed": "lissé",
+  "pixelated": "pixelisé",
+  "Pixel Zoom: auto-zoom enabled. Click to disable.": "Pixel Zoom : auto-zoom activé. Cliquer pour désactiver.",
+  "Pixel Zoom: disabled. Click to enable.": "Pixel Zoom : désactivé. Cliquer pour activer."
+}

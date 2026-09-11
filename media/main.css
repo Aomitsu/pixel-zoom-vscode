@@ -1,0 +1,86 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--vscode-font-family);
+  color: var(--vscode-foreground);
+  background: var(--vscode-editor-background);
+}
+
+#toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--vscode-editorWidget-background, rgba(0, 0, 0, 0.6));
+  border-bottom: 1px solid var(--vscode-editorWidget-border, transparent);
+}
+
+#toolbar button {
+  min-width: 30px;
+  height: 26px;
+  padding: 0 8px;
+  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground));
+  background: var(--vscode-button-secondaryBackground, transparent);
+  border: 1px solid var(--vscode-button-border, var(--vscode-contrastBorder, transparent));
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#toolbar button:hover {
+  background: var(--vscode-button-secondaryHoverBackground, rgba(128, 128, 128, 0.2));
+}
+
+#info {
+  margin-left: auto;
+  font-size: 12px;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+#stage {
+  position: absolute;
+  inset: 0;
+  padding-top: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: grab;
+}
+
+#stage.dragging {
+  cursor: grabbing;
+}
+
+body.checker #stage {
+  background-color: #2b2b2b;
+  background-image: linear-gradient(45deg, #3a3a3a 25%, transparent 25%),
+    linear-gradient(-45deg, #3a3a3a 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #3a3a3a 75%),
+    linear-gradient(-45deg, transparent 75%, #3a3a3a 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+}
+
+#image {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transform-origin: center center;
+  user-select: none;
+  -webkit-user-drag: none;
+  max-width: none;
+  max-height: none;
+}
+
+body.smooth #image {
+  image-rendering: auto;
+}

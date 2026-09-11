@@ -1,0 +1,132 @@
+{
+  "name": "pixel-zoom",
+  "displayName": "Pixel Zoom",
+  "description": "%extension.description%",
+  "version": "0.0.1",
+  "publisher": "max-aucube",
+  "author": "Max_auCube",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "l10n": "./l10n",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aomitsu/pixel-zoom-vscode.git"
+  },
+  "homepage": "https://github.com/Aomitsu/pixel-zoom-vscode#readme",
+  "bugs": {
+    "url": "https://github.com/Aomitsu/pixel-zoom-vscode/issues"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCustomEditor:pixelZoom.preview",
+    "onCommand:pixelZoom.open",
+    "onCommand:pixelZoom.toggle"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "pixelZoom.open",
+        "title": "%command.open.title%",
+        "category": "Pixel Zoom",
+        "icon": "$(zoom-in)"
+      },
+      {
+        "command": "pixelZoom.toggle",
+        "title": "%command.toggle.title%",
+        "category": "Pixel Zoom",
+        "icon": "$(zoom-in)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "pixelZoom.open",
+          "when": "resourceExtname =~ /\\.(png|jpe?g|bmp|ico|gif)$/i",
+          "group": "navigation@10"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "pixelZoom.open",
+          "when": "resourceExtname =~ /\\.(png|jpe?g|bmp|ico|gif)$/i",
+          "group": "navigation@10"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "pixelZoom.open"
+        },
+        {
+          "command": "pixelZoom.toggle"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "pixelZoom.preview",
+        "displayName": "%customEditor.displayName%",
+        "selector": [
+          { "filenamePattern": "*.png" },
+          { "filenamePattern": "*.jpg" },
+          { "filenamePattern": "*.jpeg" },
+          { "filenamePattern": "*.bmp" },
+          { "filenamePattern": "*.ico" },
+          { "filenamePattern": "*.gif" }
+        ],
+        "priority": "default"
+      }
+    ],
+    "configuration": {
+      "title": "Pixel Zoom",
+      "properties": {
+        "pixelZoom.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.enabled.description%"
+        },
+        "pixelZoom.maxPixelArtSize": {
+          "type": "number",
+          "default": 128,
+          "markdownDescription": "%config.maxPixelArtSize.description%"
+        },
+        "pixelZoom.defaultSmoothing": {
+          "type": "boolean",
+          "default": false,
+          "description": "%config.defaultSmoothing.description%"
+        },
+        "pixelZoom.checkerboard": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.checkerboard.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "clean": "node -e \"require('fs').rmSync('out',{recursive:true,force:true})\"",
+    "compile": "npm run clean && npm run compile:extension && npm run compile:webview",
+    "compile:extension": "tsc -p tsconfig.json",
+    "compile:webview": "esbuild src/webview/main.ts --bundle --format=iife --target=es2020 --outfile=media/main.js",
+    "watch": "tsc -w -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.webview.json",
+    "test": "vitest run",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.2.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

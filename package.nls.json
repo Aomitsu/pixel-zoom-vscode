@@ -1,0 +1,10 @@
+{
+  "extension.description": "Pixel art preview with automatic zoom fitted to the window.",
+  "command.open.title": "Open Preview",
+  "command.toggle.title": "Toggle Auto Zoom",
+  "customEditor.displayName": "Pixel Zoom",
+  "config.enabled.description": "Automatically open supported images in Pixel Zoom. Disable to use the built-in image preview.",
+  "config.maxPixelArtSize.description": "Maximum size (in pixels, longest side) below which an image is treated as pixel art and zoomed automatically.",
+  "config.defaultSmoothing.description": "Enable smoothing by default (disabled = sharp, pixelated rendering).",
+  "config.checkerboard.description": "Show a checkerboard behind images to reveal transparency."
+}

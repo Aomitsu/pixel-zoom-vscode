@@ -1,0 +1,10 @@
+{
+  "extension.description": "Aperçu pixel art avec zoom automatique ajusté à la fenêtre.",
+  "command.open.title": "Ouvrir l'aperçu",
+  "command.toggle.title": "Activer/désactiver l'auto-zoom",
+  "customEditor.displayName": "Pixel Zoom",
+  "config.enabled.description": "Ouvrir automatiquement les images prises en charge dans Pixel Zoom. Désactiver pour utiliser l'aperçu natif de VS Code.",
+  "config.maxPixelArtSize.description": "Taille maximale (en pixels, sur le plus grand côté) en dessous de laquelle une image est considérée comme du pixel art et zoomée automatiquement.",
+  "config.defaultSmoothing.description": "Activer le lissage par défaut (désactivé = rendu net pixelisé).",
+  "config.checkerboard.description": "Afficher un damier derrière les images pour révéler la transparence."
+}
