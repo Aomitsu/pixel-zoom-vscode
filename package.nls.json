@@ -1,5 +1,5 @@
 {
-  "extension.description": "Pixel art preview with automatic zoom fitted to the window.",
+  "extension.description": "Automatically zoom small pixel-art images with crisp, nearest-neighbor rendering.",
   "command.open.title": "Open Preview",
   "command.toggle.title": "Toggle Auto Zoom",
   "customEditor.displayName": "Pixel Zoom",

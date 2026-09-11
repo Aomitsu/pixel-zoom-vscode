@@ -2,7 +2,7 @@
   "name": "pixel-zoom",
   "displayName": "Pixel Zoom",
   "description": "%extension.description%",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "max-aucube",
   "author": "Max_auCube",
   "license": "MIT",
@@ -23,6 +23,19 @@
     "Visualization",
     "Other"
   ],
+  "keywords": [
+    "pixel art",
+    "pixel",
+    "sprite",
+    "zoom",
+    "image preview",
+    "nearest neighbor",
+    "pixelated"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
   "main": "./out/extension.js",
   "activationEvents": [
     "onStartupFinished",
@@ -74,12 +87,24 @@
         "viewType": "pixelZoom.preview",
         "displayName": "%customEditor.displayName%",
         "selector": [
-          { "filenamePattern": "*.png" },
-          { "filenamePattern": "*.jpg" },
-          { "filenamePattern": "*.jpeg" },
-          { "filenamePattern": "*.bmp" },
-          { "filenamePattern": "*.ico" },
-          { "filenamePattern": "*.gif" }
+          {
+            "filenamePattern": "*.png"
+          },
+          {
+            "filenamePattern": "*.jpg"
+          },
+          {
+            "filenamePattern": "*.jpeg"
+          },
+          {
+            "filenamePattern": "*.bmp"
+          },
+          {
+            "filenamePattern": "*.ico"
+          },
+          {
+            "filenamePattern": "*.gif"
+          }
         ],
         "priority": "default"
       }

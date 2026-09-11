@@ -2,10 +2,29 @@
 
 **Crisp, auto-zoomed previews for your pixel art — right inside VS Code.**
 
-Small sprites are painful to inspect at 1:1. Pixel Zoom automatically opens your
-images in a dedicated viewer and scales small assets up by a **whole-number
-factor** with nearest-neighbor rendering, so every pixel stays sharp and readable.
-Prefer the stock preview? Flip it off from the status bar.
+Small sprites are painful to inspect at 1:1. Pixel Zoom opens your images in a
+dedicated viewer and scales small assets up by a **whole-number factor** with
+nearest-neighbor rendering, so every pixel stays sharp and readable. Prefer the
+stock preview? Flip it off from the status bar.
+
+## Install
+
+- **VS Code Marketplace** — search for **Pixel Zoom** in the Extensions view, or run:
+
+  ```bash
+  code --install-extension max-aucube.pixel-zoom
+  ```
+
+- **Open VSX (VSCodium)** — install from
+  [open-vsx.org](https://open-vsx.org/extension/max-aucube/pixel-zoom), or run:
+
+  ```bash
+  codium --install-extension max-aucube.pixel-zoom
+  ```
+
+- **From a VSIX** — download the `.vsix` from the
+  [releases](https://github.com/Aomitsu/pixel-zoom-vscode/releases) and use
+  *Extensions: Install from VSIX…*.
 
 ## Features
 
@@ -60,7 +79,7 @@ PNG · JPG/JPEG · BMP · ICO · GIF
 ## Languages
 
 The UI follows VS Code's display language automatically (English by default,
-French included). To add a language, drop in `package.nls.<locale>.json` and
+French included). To add a language, add `package.nls.<locale>.json` and
 `l10n/bundle.l10n.<locale>.json`, mirroring the existing `fr` files.
 
 ## Development
@@ -77,36 +96,40 @@ Press `F5` in VS Code to launch the Extension Development Host.
 ## Packaging
 
 ```bash
-npm run package     # produces pixel-zoom-0.0.1.vsix
-code-oss --install-extension pixel-zoom-0.0.1.vsix
+npm run package     # produces pixel-zoom-<version>.vsix
+code-oss --install-extension pixel-zoom-<version>.vsix
 ```
 
 ## Release & CI/CD
 
 - **CI** (`.github/workflows/ci.yml`): type-check, tests and packaging on every
   push and pull request.
-- **Release** (`.github/workflows/release.yml`): push a tag `vX.X.X` and it will
-  build, publish and create a GitHub Release with the `.vsix` attached.
+- **Release** (`.github/workflows/release.yml`): push a tag `vX.X.X` and it builds,
+  publishes to the Visual Studio Marketplace and Open VSX, and creates a GitHub
+  Release with the `.vsix` attached.
 
 ```bash
 git tag v0.0.2
 git push origin v0.0.2
 ```
 
-### Publishing authentication
+### Repository secrets
 
 The Visual Studio Marketplace is published through **Microsoft Entra ID** using
-GitHub OIDC (no long-lived Personal Access Token). The job runs in the `release`
-environment and logs in with a user-assigned managed identity. Open VSX still
-uses a token.
+GitHub OIDC (no long-lived Personal Access Token). Open VSX still uses a token.
 
-Repository/environment secrets:
+Add these under **Settings → Secrets and variables → Actions → Repository
+secrets → New repository secret**:
 
 | Secret | Required | Purpose |
 | --- | --- | --- |
 | `AZURE_CLIENT_ID` | yes | Client ID of the user-assigned managed identity. |
 | `AZURE_TENANT_ID` | yes | Microsoft Entra ID tenant ID. |
-| `OVSX_PAT` | no | Open VSX token (for VSCodium). The step is skipped when absent. |
+| `OVSX_PAT` | no | Open VSX token (for VSCodium). The steps are skipped when absent. |
+
+The release job runs in the `release` environment, so the same values can also be
+stored as **environment secrets** if you prefer. No `VSCE_PAT` or
+`AZURE_SUBSCRIPTION_ID` is needed.
 
 One-time Azure setup:
 
@@ -128,9 +151,8 @@ One-time Azure setup:
 
 ### Open VSX (optional)
 
-Open VSX (used by VSCodium) uses a token instead of Entra ID and needs a one-time
-namespace. If `OVSX_PAT` is absent, the Open VSX steps are skipped and never block
-the release.
+Open VSX needs a one-time namespace. If `OVSX_PAT` is absent, the Open VSX steps
+are skipped and never block the release.
 
 1. Create an [Eclipse account](https://accounts.eclipse.org/user/register) (same
    GitHub username) and sign in to [open-vsx.org](https://open-vsx.org) with GitHub.
@@ -145,7 +167,6 @@ the release.
 
 > Publisher ID is `max-aucube` (VS Code IDs cannot contain `_`); the author handle
 > is **Max_auCube**.
-
 
 ## Author
 
